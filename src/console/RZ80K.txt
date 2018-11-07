@@ -1,0 +1,6 @@
+attach RZ80K
+start
+load 1000 msgtest2.dat
+dump 1000 64
+regs
+go 1000
