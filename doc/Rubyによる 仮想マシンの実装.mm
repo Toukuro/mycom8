@@ -193,6 +193,10 @@
 <node COLOR="#111111" CREATED="1542540488699" ID="ID_279603832" MODIFIED="1542540494492" TEXT="Write&#x8981;&#x6c42;&#x9001;&#x4fe1;"/>
 </node>
 </node>
+<node COLOR="#00b439" CREATED="1542578700789" ID="ID_699667161" MODIFIED="1542578718084" TEXT="&#x30d7;&#x30ed;&#x30c8;&#x30b3;&#x30eb;">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font BOLD="true" NAME="Meiryo UI" SIZE="16"/>
+</node>
 </node>
 <node COLOR="#0033ff" CREATED="1509338892167" ID="ID_254227627" MODIFIED="1542538732826" POSITION="left" STYLE="fork" TEXT="CPU">
 <edge STYLE="sharp_bezier" WIDTH="8"/>

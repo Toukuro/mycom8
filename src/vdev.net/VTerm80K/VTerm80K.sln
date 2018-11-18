@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VTerm80K", "VTerm80K\VTerm80K.vbproj", "{E354F4AB-89BC-4A4D-82B6-D2D31478CC46}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VDCP", "VDCP\VDCP.vbproj", "{1AF9BD39-329C-4DC4-8852-E3D2565B2FA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E354F4AB-89BC-4A4D-82B6-D2D31478CC46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E354F4AB-89BC-4A4D-82B6-D2D31478CC46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E354F4AB-89BC-4A4D-82B6-D2D31478CC46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AF9BD39-329C-4DC4-8852-E3D2565B2FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AF9BD39-329C-4DC4-8852-E3D2565B2FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AF9BD39-329C-4DC4-8852-E3D2565B2FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AF9BD39-329C-4DC4-8852-E3D2565B2FA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
