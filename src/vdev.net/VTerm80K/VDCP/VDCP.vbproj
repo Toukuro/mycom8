@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DevRequestEventArgs.vb" />
+    <Compile Include="PortProxy.vb" />
     <Compile Include="vdcpServer.vb" />
     <Compile Include="vdcpData.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
