@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1AF9BD39-329C-4DC4-8852-E3D2565B2FA5}</ProjectGuid>
+    <ProjectGuid>{80E354D9-0AE6-4C5B-B78C-BCB8B8C24511}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>VDCP</RootNamespace>
-    <AssemblyName>VDCP</AssemblyName>
+    <RootNamespace>PXCommon</RootNamespace>
+    <AssemblyName>PXCommon</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -18,7 +18,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>VDCP.xml</DocumentationFile>
+    <DocumentationFile>PXCommon.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -27,7 +27,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>VDCP.xml</DocumentationFile>
+    <DocumentationFile>PXCommon.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -63,11 +63,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlReqEventArgs.vb" />
-    <Compile Include="DeviceReqEventArgs.vb" />
-    <Compile Include="PortProxy.vb" />
-    <Compile Include="vdcpServer.vb" />
-    <Compile Include="vdcpData.vb" />
+    <Compile Include="Logger\LogAccessor\FileLogAccessor.vb" />
+    <Compile Include="Logger\LogAccessor\LogAccessor.vb" />
+    <Compile Include="Logger\LogAccessor\NullLogAccessor.vb" />
+    <Compile Include="Logger\Logger.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -83,6 +82,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ServerClient\PortProxy.vb" />
+    <Compile Include="ServerClient\Server.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -102,6 +103,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utility\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

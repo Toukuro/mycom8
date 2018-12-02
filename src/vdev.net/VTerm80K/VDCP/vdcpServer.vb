@@ -1,4 +1,6 @@
-﻿Public Class vdcpServer
+﻿Imports System.Net.Sockets
+
+Public Class VdcpServer
 
     Protected _proxy As PortProxy = Nothing
 
@@ -7,8 +9,14 @@
     Protected _readBuffer() As Byte                 '非同期受信用のバイトバッファー
     Protected _readData As String = String.Empty    '非同期受信したバイトバッファーからUTF-8で変換した文字列
 
-    Public Event ReadRequest(e As DevRequestEventArgs)
-    Public Event WriteRequest(e As DevRequestEventArgs)
+    Private _listener As TcpListener = Nothing
+
+    Public Delegate Sub DeviceReqEventHandler(sender As Object, e As DeviceReqEventArgs)
+    Public Event DeviceReadRequest As DeviceReqEventHandler
+    Public Event DeviceWriteRequest As DeviceReqEventHandler
+
+    Public Delegate Sub ControlReqEventHandler(sender As Object, e As ControlReqEventArgs)
+    Public Event ControlRequest As ControlReqEventHandler
 
     ''' <summary>
     ''' コンストラクタ
