@@ -63,6 +63,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logger\FormatLogger.vb" />
     <Compile Include="Logger\LogAccessor\FileLogAccessor.vb" />
     <Compile Include="Logger\LogAccessor\LogAccessor.vb" />
     <Compile Include="Logger\LogAccessor\NullLogAccessor.vb" />

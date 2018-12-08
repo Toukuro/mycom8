@@ -27,7 +27,7 @@ Namespace ServerClient
         Private _client As TcpClient = Nothing
         Private _readBuffer() As Byte                   '非同期受信用のバイトバッファー
 
-        Private _logger As New Logger.Logger()
+        Private _logger As New Logger.FormatLogger()
 
 #End Region
 
@@ -90,6 +90,15 @@ Namespace ServerClient
             End Get
         End Property
 
+        Public Property LogAccessor As Logger.LogAccessor
+            Get
+                Return _logger.Accessor
+            End Get
+            Set(value As Logger.LogAccessor)
+                _logger = New Logger.FormatLogger(value)
+            End Set
+        End Property
+
 #End Region
 
 #Region "サーバスタート"
@@ -110,7 +119,6 @@ Namespace ServerClient
 
             Catch ex As Exception
                 Dim msg As String = String.Format("IP address can not be acquired. (server=[{0}])", _server)
-                _logger.Error(msg)
                 Throw New CommException(msg, ex)
             End Try
 
@@ -118,16 +126,14 @@ Namespace ServerClient
             Try
                 _listener = New TcpListener(_ipAddr, _portNo)
             Catch ex As Exception
-                Dim msg As String = "Can not start listening."
-                _logger.Error(msg)
-                Throw New CommException(msg, ex)
+                Throw New CommException("Can not start listening.", ex)
             End Try
 
             '待ち受け
             While _client Is Nothing
                 If _listener.Pending Then
                     _client = _listener.AcceptTcpClient
-                    _logger.Detail("Client connected. (client=[])")
+                    _logger.Detail("Client connected. (client=[{0}])", Me.IpAddres)
                 Else
                     Threading.Thread.Sleep(1000)
                 End If
@@ -153,7 +159,8 @@ Namespace ServerClient
                 Dim stream As NetworkStream = _client.GetStream
                 Return stream.Read(iBuffer, 0, iMaxLength)
             Catch ex As Exception
-                Throw New CommException("Read failed.", ex)
+                Dim msg As String = _logger.Error("Read failed.")
+                Throw New CommException(msg, ex)
             End Try
         End Function
 
@@ -195,6 +202,7 @@ Namespace ServerClient
                 Throw New CommException("Connection with the client is not established.")
             End If
 
+            _logger.Detail("AsyncRead start.")
             Dim stream As NetworkStream = _client.GetStream
             Return stream.BeginRead(_readBuffer, 0, _readBuffer.Length, AddressOf _AsyncReadCallback, stream)
         End Function
@@ -211,6 +219,7 @@ Namespace ServerClient
                 AsyncRead()
             Else
                 stream.Close()
+                _logger.Detail("stream closed.")
             End If
         End Sub
 
@@ -231,6 +240,7 @@ Namespace ServerClient
                     _readData.Add(_readBuffer(i))
                 Next
             End If
+            _logger.Detail("data received. (length={0} bytes)", readLen)
 
             Return readLen
         End Function

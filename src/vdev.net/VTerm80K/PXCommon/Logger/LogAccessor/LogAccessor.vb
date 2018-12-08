@@ -5,9 +5,8 @@
     ''' </summary>
     ''' <remarks>
     ''' ここでのアクセサとは、ログの出力先を制御するものを示す。
-    ''' <para>(C) 2017 Experis ManpowerGroup</para>
+    ''' <para>(C) Michikusa Ware 2018</para>
     ''' <para>Author: K.Adachi</para>
-    ''' <para>$Id: LogAccessor.vb 33 2017-05-25 08:51:54Z koji_adachi $</para>
     ''' </remarks>
     Public MustInherit Class LogAccessor
 

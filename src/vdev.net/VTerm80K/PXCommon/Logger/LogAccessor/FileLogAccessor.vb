@@ -6,9 +6,8 @@ Namespace Logger
     ''' ログ出力用ファイルアクセサ
     ''' </summary>
     ''' <remarks>
-    ''' <para>(C) 2017 Experis ManpowerGroup</para>
+    ''' <para>(C) Michikusa Ware 2018</para>
     ''' <para>Author: K.Adachi</para>
-    ''' <para>$Id: FileLogAccessor.vb 33 2017-05-25 08:51:54Z koji_adachi $</para>
     ''' </remarks>
     Public Class FileLogAccessor
         Inherits LogAccessor

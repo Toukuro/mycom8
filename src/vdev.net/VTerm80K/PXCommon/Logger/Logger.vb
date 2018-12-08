@@ -8,11 +8,12 @@ Namespace Logger
     ''' ログ出力クラス
     ''' </summary>
     ''' <remarks>
-    ''' <para>(C) 2017 Experis ManpowerGroup</para>
+    ''' <para>(C) Michikusa Ware 2018</para>
     ''' <para>Author: K.Adachi</para>
-    ''' <para>$Id: Logger.vb 33 2017-05-25 08:51:54Z koji_adachi $</para>
     ''' </remarks>
     Public Class Logger
+
+#Region "定数定義"
 
         ''' <summary>
         ''' ログの出力区分を示す定数
@@ -36,6 +37,11 @@ Namespace Logger
             ALL
         End Enum
 
+#End Region
+
+#Region "インスタンス変数定義"
+
+        ''' <summary>ログ出力レベル</summary>
         Public Level As LogLevelEnum = LogLevelEnum.ALL
 
         'ログフォーマットのキーワード
@@ -46,12 +52,18 @@ Namespace Logger
         Private Const KWD_Message = "{Message}"         'ログメッセージ
 
         ''' <summary>デフォルトのログフォーマット</summary>
-        Private Const DefaultFormat = KWD_TimeStamp & " " & _
-                                      KWD_ThreadId & " [" & KWD_Level & "] " & KWD_Caller & " " & _
+        Private Const DefaultFormat = KWD_TimeStamp & " " &
+                                      KWD_ThreadId & " [" & KWD_Level & "] " & KWD_Caller & " " &
                                       KWD_Message
 
         Private _accessor As LogAccessor = Nothing   'ログ出力用アクセサ
         Private _logFormat As String = DefaultFormat    'ログフォーマット
+
+        Protected _StackLevelAdjust As Integer = 1
+
+#End Region
+
+#Region "コンストラクタ"
 
         ''' <summary>
         ''' コンストラクタ
@@ -71,6 +83,10 @@ Namespace Logger
         Public Sub New(iAccessor As LogAccessor)
             _accessor = iAccessor
         End Sub
+
+#End Region
+
+#Region "プロパティ"
 
         ''' <summary>
         ''' 使用中のアクセサを返却する
@@ -99,74 +115,71 @@ Namespace Logger
             End Set
         End Property
 
+#End Region
+
+#Region "パブリックメソッド"
+
         ''' <summary>
         ''' 「詳細」ログの出力
         ''' </summary>
         ''' <param name="iMessage"></param>
-        ''' <param name="iCallLevel"></param>
-        Public Overridable Sub Detail(iMessage As String, Optional iCallLevel As Integer = 1)
-            Me.Write(LogLevelEnum.DETAIL, iMessage, 1 + iCallLevel)
-        End Sub
+        Public Overridable Function Detail(iMessage As String) As String
+            Return Me.Write(LogLevelEnum.DETAIL, iMessage)
+        End Function
 
         ''' <summary>
         ''' 「情報」ログの出力
         ''' </summary>
         ''' <param name="iMessage">ログメッセージ</param>
-        ''' <param name="iCallLevel">呼び出しレベル</param>
         ''' <remarks></remarks>
-        Public Overridable Sub Information(iMessage As String, Optional iCallLevel As Integer = 1)
-            Me.Write(LogLevelEnum.INFORMATION, iMessage, 1 + iCallLevel)
-        End Sub
+        Public Overridable Function Information(iMessage As String) As String
+            Return Me.Write(LogLevelEnum.INFORMATION, iMessage)
+        End Function
 
         ''' <summary>
         ''' 「警告」ログの出力
         ''' </summary>
         ''' <param name="iMessage">ログメッセージ</param>
-        ''' <param name="iCallLevel">呼び出しレベル</param>
         ''' <remarks></remarks>
-        Public Overridable Sub Warning(iMessage As String, Optional iCallLevel As Integer = 1)
-            Me.Write(LogLevelEnum.WARNING, iMessage, 1 + iCallLevel)
-        End Sub
+        Public Overridable Function Warning(iMessage As String) As String
+            Return Me.Write(LogLevelEnum.WARNING, iMessage)
+        End Function
 
         ''' <summary>
         ''' 「エラー」ログの出力
         ''' </summary>
         ''' <param name="iMessage"></param>
-        ''' <param name="iCallLevel"></param>
-        Public Overridable Sub [Error](iMessage As String, Optional iCallLevel As Integer = 1)
-            Me.Write(LogLevelEnum.ERROR, iMessage, 1 + iCallLevel)
-        End Sub
+        Public Overridable Function [Error](iMessage As String) As String
+            Return Me.Write(LogLevelEnum.ERROR, iMessage)
+        End Function
 
         ''' <summary>
         ''' 「致命的エラー」ログの出力
         ''' </summary>
         ''' <param name="iMessage">ログメッセージ</param>
-        ''' <param name="iCallLevel">呼び出しレベル</param>
         ''' <remarks></remarks>
-        Public Overridable Sub Fatal(iMessage As String, Optional iCallLevel As Integer = 1)
-            Me.Write(LogLevelEnum.FATAL, iMessage, 1 + iCallLevel)
-        End Sub
+        Public Overridable Function Fatal(iMessage As String) As String
+            Return Me.Write(LogLevelEnum.FATAL, iMessage)
+        End Function
 
         ''' <summary>
         ''' 「デバッグ」ログの出力
         ''' </summary>
         ''' <param name="iMessage">ログメッセージ</param>
-        ''' <param name="iCallLevel">呼び出しレベル</param>
         ''' <remarks></remarks>
-        Public Overridable Sub Debug(iMessage As String, Optional iCallLevel As Integer = 1)
-            Me.Write(LogLevelEnum.DEBUG, iMessage, 1 + iCallLevel)
-        End Sub
+        Public Overridable Function Debug(iMessage As String) As String
+            Return Me.Write(LogLevelEnum.DEBUG, iMessage)
+        End Function
 
         ''' <summary>
         ''' 汎用のログ出力メソッド
         ''' </summary>
         ''' <param name="iLevel">ログレベル</param>
         ''' <param name="iMessage">ログメッセージ</param>
-        ''' <param name="iCallLevel">呼び出しレベル</param>
         ''' <remarks></remarks>
-        Public Sub Write(iLevel As LogLevelEnum, iMessage As String, Optional iCallLevel As Integer = 1)
+        Public Function Write(iLevel As LogLevelEnum, iMessage As String) As String
             If iLevel > Level Then
-                Return
+                Return iMessage
             End If
 
             SyncLock _accessor.LockObj
@@ -192,7 +205,7 @@ Namespace Logger
                 End Select
 
                 '呼び出し元取得
-                Dim caller As String = GetCaller(1 + iCallLevel)
+                Dim caller As String = GetCaller()
 
                 '出力文字列の生成
                 Dim sb As New StringBuilder(_logFormat)
@@ -208,21 +221,35 @@ Namespace Logger
                 _accessor.Write(sb.ToString)
                 _accessor.Close()
             End SyncLock
-        End Sub
+
+            Return iMessage
+        End Function
+
+#End Region
+
+#Region "プライベートメソッド"
 
         ''' <summary>
         ''' 呼び出し元のクラス名とメソッド名を取得する
         ''' </summary>
-        ''' <param name="iCallLevel"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Private Function GetCaller(iCallLevel As Integer)
+        Private Function GetCaller()
             Dim st As New StackTrace(False)
-            Dim mb As MethodBase = st.GetFrame(iCallLevel).GetMethod
+            Dim mb As MethodBase
+
+            Dim level As Integer = 0
+            Do
+                level += 1
+                mb = st.GetFrame(level).GetMethod
+            Loop While mb.DeclaringType.Equals(Me.GetType)
+
             Dim rt As Type = mb.ReflectedType
 
             Return String.Format("{0}.{1}", rt.Name, mb.Name)
         End Function
+
+#End Region
     End Class
 
 End Namespace
