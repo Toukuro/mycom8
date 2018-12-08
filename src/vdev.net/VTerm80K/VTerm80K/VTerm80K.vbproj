@@ -130,5 +130,11 @@
   <ItemGroup>
     <Folder Include="Resources\Images\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VDCP\VDCP.vbproj">
+      <Project>{1af9bd39-329c-4dc4-8852-e3d2565b2fa5}</Project>
+      <Name>VDCP</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -8,24 +8,37 @@ Public Class DeviceReqEventArgs
     ''' デバイスクラス
     ''' </summary>
     ''' <returns></returns>
-    Public Property DevClass As Byte
+    Public ReadOnly Property DevClass As Byte
 
     ''' <summary>
     ''' デバイスID
     ''' </summary>
     ''' <returns></returns>
-    Public Property DevId As Byte
+    Public ReadOnly Property DevId As Byte
 
     ''' <summary>
     ''' リクエストアドレス
     ''' </summary>
     ''' <returns></returns>
-    Public Property Addr As UShort
+    Public ReadOnly Property Addr As UShort
 
     ''' <summary>
     ''' Write要求時のリクエストデータ
     ''' </summary>
     ''' <returns></returns>
-    Public Property Data As Byte
+    Public ReadOnly Property Data As Byte
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="iDevClass"></param>
+    ''' <param name="iDevId"></param>
+    ''' <param name="iAddr"></param>
+    ''' <param name="iData"></param>
+    Public Sub New(iDevClass As Byte, iDevId As Byte, iAddr As UShort, iData As Byte)
+        _DevClass = iDevClass
+        _DevId = iDevId
+        _Addr = iAddr
+        _Data = iData
+    End Sub
 End Class

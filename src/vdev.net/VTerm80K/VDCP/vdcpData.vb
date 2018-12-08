@@ -6,6 +6,6 @@
 
     Public ReadOnly Property Address As UInt16
 
-    Public ReadOnly Property Data As UInt16
+    Public ReadOnly Property Data As Byte
 
 End Class

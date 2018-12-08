@@ -1,2 +1,4 @@
 obj
 .vs
+/src/vdev.net/VTerm80K/PXCommon/bin
+bin

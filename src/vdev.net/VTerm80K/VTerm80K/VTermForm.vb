@@ -1,5 +1,6 @@
 ﻿Public Class VTermForm
 
+    Private _vdcpServer As VDCP.VdcpServer
     Private _KeyMap As New Hashtable
     Private _KeyMapShift As New Hashtable
 

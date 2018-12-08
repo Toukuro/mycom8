@@ -18,12 +18,21 @@ Namespace Logger
         ''' ログの出力区分を示す定数
         ''' </summary>
         Public Enum LogLevelEnum
+            ''' <summary>ログ出力なし</summary>
             NONE
+            ''' <summary>致命的エラー</summary>
             FATAL
+            ''' <summary>エラー</summary>
             [ERROR]
+            ''' <summary>警告</summary>
             WARNING
+            ''' <summary>情報</summary>
             INFORMATION
+            ''' <summary>詳細</summary>
+            DETAIL
+            ''' <summary>デバッグ</summary>
             DEBUG
+            ''' <summary>すべて</summary>
             ALL
         End Enum
 
@@ -89,6 +98,15 @@ Namespace Logger
                 _logFormat = IIf(String.IsNullOrEmpty(value), DefaultFormat, value)
             End Set
         End Property
+
+        ''' <summary>
+        ''' 「詳細」ログの出力
+        ''' </summary>
+        ''' <param name="iMessage"></param>
+        ''' <param name="iCallLevel"></param>
+        Public Overridable Sub Detail(iMessage As String, Optional iCallLevel As Integer = 1)
+            Me.Write(LogLevelEnum.DETAIL, iMessage, 1 + iCallLevel)
+        End Sub
 
         ''' <summary>
         ''' 「情報」ログの出力
@@ -161,6 +179,8 @@ Namespace Logger
                 'ログ区分の設定
                 Dim logType As String = String.Empty
                 Select Case iLevel
+                    Case LogLevelEnum.DETAIL
+                        logType = "DETAIL"
                     Case LogLevelEnum.INFORMATION
                         logType = "INFO"
                     Case LogLevelEnum.WARNING
