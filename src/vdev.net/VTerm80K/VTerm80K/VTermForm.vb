@@ -1,20 +1,17 @@
-﻿Public Class VTermForm
+﻿Imports VDCP
 
-    Private _vdcpServer As VDCP.VdcpServer
-    Private _KeyMap As New Hashtable
+Public Class VTermForm
+
+    Private WithEvents _vdcpServer As VDCP.VdcpServer
+    Private _KeyMap As New Hashtable        'KeyCode→Buttonの変換用
     Private _KeyMapShift As New Hashtable
 
+    ''' <summary>キーの押下状態を示すデータ</summary>
+    Private _KeyState(10) As Byte
 
     Private Sub VTermForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitKeyMap()
-    End Sub
-
-    Private Sub VTermForm_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
-        If _KeyMap.Contains(e.KeyCode) Then
-            Dim btnKey As Button = _KeyMap(e.KeyCode)
-            btnKey.Select()
-            btnKey.PerformClick()
-        End If
+        SetKeyButtonEvent()
     End Sub
 
     Private Sub InitKeyMap()
@@ -61,4 +58,60 @@
         _KeyMap(Keys.Enter) = btnKeyCR
         _KeyMap(Keys.Delete) = btnKeyInstDel
     End Sub
+
+    Private Sub SetKeyButtonEvent()
+        For Each ctrl As Control In pnlKeyBoard.Controls
+            If TypeOf ctrl Is Button Then
+                AddHandler ctrl.Click, AddressOf btnKey_Click
+            End If
+        Next
+    End Sub
+
+#Region "キーボードの処理"
+
+    Private Sub VTermForm_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
+        If _KeyMap.Contains(e.KeyCode) Then
+            Dim btnKey As Button = _KeyMap(e.KeyCode)
+            btnKey.Select()
+            btnKey.PerformClick()
+        End If
+    End Sub
+
+    Private Sub btnKey_Click(sender As Object, e As EventArgs)
+        Dim btn As Button = sender
+        Dim tagValue As Byte = 0
+
+        Byte.TryParse(btn.Tag, tagValue)
+
+        Dim devAddr As UShort = CInt(tagValue / &H10)
+        Dim bitNo As Byte = tagValue And &HF
+
+        Dim devData As Byte = 2 ^ bitNo
+
+        If _vdcpServer IsNot Nothing AndAlso True Then
+
+        End If
+    End Sub
+
+    Private Sub KeySet(iAddr As UShort, iKey As Byte)
+
+    End Sub
+
+    Private Sub KeyReset(iAddr As UShort, iKey As Byte)
+
+    End Sub
+#End Region
+
+#Region "VDCPサーバのイベント"
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub _vdcpServer_DeviceReadRequest(sender As Object, e As DeviceReqEventArgs) Handles _vdcpServer.DeviceReadRequest
+
+    End Sub
+
+#End Region
 End Class

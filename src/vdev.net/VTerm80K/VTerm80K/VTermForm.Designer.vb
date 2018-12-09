@@ -213,6 +213,7 @@ Partial Class VTermForm
         Me.btnKeyKana.Name = "btnKeyKana"
         Me.btnKeyKana.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyKana.TabIndex = 129
+        Me.btnKeyKana.Tag = "65"
         Me.btnKeyKana.Text = "カナ" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "英数"
         Me.btnKeyKana.UseVisualStyleBackColor = False
         '
@@ -225,6 +226,7 @@ Partial Class VTermForm
         Me.btnKeySlash.Name = "btnKeySlash"
         Me.btnKeySlash.Size = New System.Drawing.Size(38, 38)
         Me.btnKeySlash.TabIndex = 128
+        Me.btnKeySlash.Tag = "74"
         Me.btnKeySlash.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "／メ"
         Me.btnKeySlash.UseVisualStyleBackColor = False
         '
@@ -237,6 +239,7 @@ Partial Class VTermForm
         Me.btnKeyPeriod.Name = "btnKeyPeriod"
         Me.btnKeyPeriod.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyPeriod.TabIndex = 127
+        Me.btnKeyPeriod.Tag = "64"
         Me.btnKeyPeriod.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "．ル"
         Me.btnKeyPeriod.UseVisualStyleBackColor = False
         '
@@ -249,6 +252,7 @@ Partial Class VTermForm
         Me.btnKeyCamma.Name = "btnKeyCamma"
         Me.btnKeyCamma.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyCamma.TabIndex = 126
+        Me.btnKeyCamma.Tag = "73"
         Me.btnKeyCamma.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "，ネ"
         Me.btnKeyCamma.UseVisualStyleBackColor = False
         '
@@ -261,6 +265,7 @@ Partial Class VTermForm
         Me.btnKeyM.Name = "btnKeyM"
         Me.btnKeyM.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyM.TabIndex = 125
+        Me.btnKeyM.Tag = "63"
         Me.btnKeyM.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｍモ"
         Me.btnKeyM.UseVisualStyleBackColor = False
         '
@@ -273,6 +278,7 @@ Partial Class VTermForm
         Me.btnKeyN.Name = "btnKeyN"
         Me.btnKeyN.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyN.TabIndex = 124
+        Me.btnKeyN.Tag = "72"
         Me.btnKeyN.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｎミ"
         Me.btnKeyN.UseVisualStyleBackColor = False
         '
@@ -285,6 +291,7 @@ Partial Class VTermForm
         Me.btnKeyB.Name = "btnKeyB"
         Me.btnKeyB.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyB.TabIndex = 123
+        Me.btnKeyB.Tag = "62"
         Me.btnKeyB.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｂコ"
         Me.btnKeyB.UseVisualStyleBackColor = False
         '
@@ -297,6 +304,7 @@ Partial Class VTermForm
         Me.btnKeyV.Name = "btnKeyV"
         Me.btnKeyV.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyV.TabIndex = 122
+        Me.btnKeyV.Tag = "71"
         Me.btnKeyV.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｖヒ"
         Me.btnKeyV.UseVisualStyleBackColor = False
         '
@@ -309,6 +317,7 @@ Partial Class VTermForm
         Me.btnKeyC.Name = "btnKeyC"
         Me.btnKeyC.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyC.TabIndex = 121
+        Me.btnKeyC.Tag = "61"
         Me.btnKeyC.Text = "■　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｃソ"
         Me.btnKeyC.UseVisualStyleBackColor = False
         '
@@ -321,6 +330,7 @@ Partial Class VTermForm
         Me.btnKeyX.Name = "btnKeyX"
         Me.btnKeyX.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyX.TabIndex = 120
+        Me.btnKeyX.Tag = "70"
         Me.btnKeyX.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｘサ"
         Me.btnKeyX.UseVisualStyleBackColor = False
         '
@@ -333,6 +343,7 @@ Partial Class VTermForm
         Me.btnKeyZ.Name = "btnKeyZ"
         Me.btnKeyZ.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyZ.TabIndex = 119
+        Me.btnKeyZ.Tag = "60"
         Me.btnKeyZ.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｚツ"
         Me.btnKeyZ.UseVisualStyleBackColor = False
         '
@@ -345,6 +356,7 @@ Partial Class VTermForm
         Me.btnKeyCross.Name = "btnKeyCross"
         Me.btnKeyCross.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyCross.TabIndex = 118
+        Me.btnKeyCross.Tag = "45"
         Me.btnKeyCross.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "┼ロ"
         Me.btnKeyCross.UseVisualStyleBackColor = False
         '
@@ -357,6 +369,7 @@ Partial Class VTermForm
         Me.btnKeySemicolon.Name = "btnKeySemicolon"
         Me.btnKeySemicolon.Size = New System.Drawing.Size(38, 38)
         Me.btnKeySemicolon.TabIndex = 117
+        Me.btnKeySemicolon.Tag = "54"
         Me.btnKeySemicolon.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "；ケ"
         Me.btnKeySemicolon.UseVisualStyleBackColor = False
         '
@@ -369,6 +382,7 @@ Partial Class VTermForm
         Me.btnKeyL.Name = "btnKeyL"
         Me.btnKeyL.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyL.TabIndex = 116
+        Me.btnKeyL.Tag = "44"
         Me.btnKeyL.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｌリ"
         Me.btnKeyL.UseVisualStyleBackColor = False
         '
@@ -381,6 +395,7 @@ Partial Class VTermForm
         Me.btnKeyK.Name = "btnKeyK"
         Me.btnKeyK.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyK.TabIndex = 115
+        Me.btnKeyK.Tag = "53"
         Me.btnKeyK.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｋノ"
         Me.btnKeyK.UseVisualStyleBackColor = False
         '
@@ -393,6 +408,7 @@ Partial Class VTermForm
         Me.btnKeyJ.Name = "btnKeyJ"
         Me.btnKeyJ.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyJ.TabIndex = 114
+        Me.btnKeyJ.Tag = "43"
         Me.btnKeyJ.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｊマ"
         Me.btnKeyJ.UseVisualStyleBackColor = False
         '
@@ -405,6 +421,7 @@ Partial Class VTermForm
         Me.btnKeyH.Name = "btnKeyH"
         Me.btnKeyH.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyH.TabIndex = 113
+        Me.btnKeyH.Tag = "52"
         Me.btnKeyH.Text = "○　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｈク"
         Me.btnKeyH.UseVisualStyleBackColor = False
         '
@@ -417,6 +434,7 @@ Partial Class VTermForm
         Me.btnKeyG.Name = "btnKeyG"
         Me.btnKeyG.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyG.TabIndex = 112
+        Me.btnKeyG.Tag = "42"
         Me.btnKeyG.Text = "●　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｇキ"
         Me.btnKeyG.UseVisualStyleBackColor = False
         '
@@ -429,6 +447,7 @@ Partial Class VTermForm
         Me.btnKeyF.Name = "btnKeyF"
         Me.btnKeyF.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyF.TabIndex = 111
+        Me.btnKeyF.Tag = "51"
         Me.btnKeyF.Text = "♣ 　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｆハ"
         Me.btnKeyF.UseVisualStyleBackColor = False
         '
@@ -441,6 +460,7 @@ Partial Class VTermForm
         Me.btnKeyD.Name = "btnKeyD"
         Me.btnKeyD.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyD.TabIndex = 110
+        Me.btnKeyD.Tag = "41"
         Me.btnKeyD.Text = "♦ 　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｄシ"
         Me.btnKeyD.UseVisualStyleBackColor = False
         '
@@ -453,6 +473,7 @@ Partial Class VTermForm
         Me.btnKeyS.Name = "btnKeyS"
         Me.btnKeyS.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyS.TabIndex = 109
+        Me.btnKeyS.Tag = "50"
         Me.btnKeyS.Text = "♥ 　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｓト"
         Me.btnKeyS.UseVisualStyleBackColor = False
         '
@@ -465,6 +486,7 @@ Partial Class VTermForm
         Me.btnKeyA.Name = "btnKeyA"
         Me.btnKeyA.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyA.TabIndex = 108
+        Me.btnKeyA.Tag = "40"
         Me.btnKeyA.Text = "♠ 　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ａチ"
         Me.btnKeyA.UseVisualStyleBackColor = False
         '
@@ -477,6 +499,7 @@ Partial Class VTermForm
         Me.btnKeyEqual.Name = "btnKeyEqual"
         Me.btnKeyEqual.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyEqual.TabIndex = 107
+        Me.btnKeyEqual.Tag = "25"
         Me.btnKeyEqual.Text = "＊　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "＝ヘ"
         Me.btnKeyEqual.UseVisualStyleBackColor = False
         '
@@ -489,6 +512,7 @@ Partial Class VTermForm
         Me.btnKeyP.Name = "btnKeyP"
         Me.btnKeyP.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyP.TabIndex = 106
+        Me.btnKeyP.Tag = "34"
         Me.btnKeyP.Text = "↑　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｐセ"
         Me.btnKeyP.UseVisualStyleBackColor = False
         '
@@ -501,6 +525,7 @@ Partial Class VTermForm
         Me.btnKeyO.Name = "btnKeyO"
         Me.btnKeyO.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyO.TabIndex = 105
+        Me.btnKeyO.Tag = "24"
         Me.btnKeyO.Text = "：　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｏラ"
         Me.btnKeyO.UseVisualStyleBackColor = False
         '
@@ -513,6 +538,7 @@ Partial Class VTermForm
         Me.btnKeyI.Name = "btnKeyI"
         Me.btnKeyI.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyI.TabIndex = 104
+        Me.btnKeyI.Tag = "33"
         Me.btnKeyI.Text = "？　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｉニ"
         Me.btnKeyI.UseVisualStyleBackColor = False
         '
@@ -525,6 +551,7 @@ Partial Class VTermForm
         Me.btnKeyU.Name = "btnKeyU"
         Me.btnKeyU.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyU.TabIndex = 103
+        Me.btnKeyU.Tag = "23"
         Me.btnKeyU.Text = "＠　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｕナ"
         Me.btnKeyU.UseVisualStyleBackColor = False
         '
@@ -537,6 +564,7 @@ Partial Class VTermForm
         Me.btnKeyY.Name = "btnKeyY"
         Me.btnKeyY.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyY.TabIndex = 102
+        Me.btnKeyY.Tag = "32"
         Me.btnKeyY.Text = "＼　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｙン"
         Me.btnKeyY.UseVisualStyleBackColor = False
         '
@@ -549,6 +577,7 @@ Partial Class VTermForm
         Me.btnKeyT.Name = "btnKeyT"
         Me.btnKeyT.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyT.TabIndex = 101
+        Me.btnKeyT.Tag = "22"
         Me.btnKeyT.Text = "］　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｔカ"
         Me.btnKeyT.UseVisualStyleBackColor = False
         '
@@ -561,6 +590,7 @@ Partial Class VTermForm
         Me.btnKeyR.Name = "btnKeyR"
         Me.btnKeyR.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyR.TabIndex = 100
+        Me.btnKeyR.Tag = "31"
         Me.btnKeyR.Text = "［　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｒス"
         Me.btnKeyR.UseVisualStyleBackColor = False
         '
@@ -573,6 +603,7 @@ Partial Class VTermForm
         Me.btnKeyE.Name = "btnKeyE"
         Me.btnKeyE.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyE.TabIndex = 99
+        Me.btnKeyE.Tag = "21"
         Me.btnKeyE.Text = "←　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｅイ"
         Me.btnKeyE.UseVisualStyleBackColor = False
         '
@@ -585,6 +616,7 @@ Partial Class VTermForm
         Me.btnKeyW.Name = "btnKeyW"
         Me.btnKeyW.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyW.TabIndex = 98
+        Me.btnKeyW.Tag = "30"
         Me.btnKeyW.Text = "＞　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｗテ"
         Me.btnKeyW.UseVisualStyleBackColor = False
         '
@@ -597,6 +629,7 @@ Partial Class VTermForm
         Me.btnKeyQ.Name = "btnKeyQ"
         Me.btnKeyQ.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyQ.TabIndex = 97
+        Me.btnKeyQ.Tag = "20"
         Me.btnKeyQ.Text = "＜　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Ｑタ"
         Me.btnKeyQ.UseVisualStyleBackColor = False
         '
@@ -609,6 +642,7 @@ Partial Class VTermForm
         Me.btnKeyMinus.Name = "btnKeyMinus"
         Me.btnKeyMinus.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyMinus.TabIndex = 96
+        Me.btnKeyMinus.Tag = "05"
         Me.btnKeyMinus.Text = "＋　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "－ホ"
         Me.btnKeyMinus.UseVisualStyleBackColor = False
         '
@@ -621,6 +655,7 @@ Partial Class VTermForm
         Me.btnKey0.Name = "btnKey0"
         Me.btnKey0.Size = New System.Drawing.Size(38, 38)
         Me.btnKey0.TabIndex = 95
+        Me.btnKey0.Tag = "14"
         Me.btnKey0.Text = "π　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "０ワ"
         Me.btnKey0.UseVisualStyleBackColor = False
         '
@@ -633,6 +668,7 @@ Partial Class VTermForm
         Me.btnKey9.Name = "btnKey9"
         Me.btnKey9.Size = New System.Drawing.Size(38, 38)
         Me.btnKey9.TabIndex = 94
+        Me.btnKey9.Tag = "04"
         Me.btnKey9.Text = "）　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "９ヨ"
         Me.btnKey9.UseVisualStyleBackColor = False
         '
@@ -645,6 +681,7 @@ Partial Class VTermForm
         Me.btnKey8.Name = "btnKey8"
         Me.btnKey8.Size = New System.Drawing.Size(38, 38)
         Me.btnKey8.TabIndex = 93
+        Me.btnKey8.Tag = "13"
         Me.btnKey8.Text = "（　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "８ユ"
         Me.btnKey8.UseVisualStyleBackColor = False
         '
@@ -657,6 +694,7 @@ Partial Class VTermForm
         Me.btnKey7.Name = "btnKey7"
         Me.btnKey7.Size = New System.Drawing.Size(38, 38)
         Me.btnKey7.TabIndex = 92
+        Me.btnKey7.Tag = "03"
         Me.btnKey7.Text = "’　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "７ヤ"
         Me.btnKey7.UseVisualStyleBackColor = False
         '
@@ -669,6 +707,7 @@ Partial Class VTermForm
         Me.btnKey6.Name = "btnKey6"
         Me.btnKey6.Size = New System.Drawing.Size(38, 38)
         Me.btnKey6.TabIndex = 91
+        Me.btnKey6.Tag = "12"
         Me.btnKey6.Text = "＆　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "６オ"
         Me.btnKey6.UseVisualStyleBackColor = False
         '
@@ -681,6 +720,7 @@ Partial Class VTermForm
         Me.btnKey5.Name = "btnKey5"
         Me.btnKey5.Size = New System.Drawing.Size(38, 38)
         Me.btnKey5.TabIndex = 90
+        Me.btnKey5.Tag = "02"
         Me.btnKey5.Text = "％　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "５エ"
         Me.btnKey5.UseVisualStyleBackColor = False
         '
@@ -693,6 +733,7 @@ Partial Class VTermForm
         Me.btnKey4.Name = "btnKey4"
         Me.btnKey4.Size = New System.Drawing.Size(38, 38)
         Me.btnKey4.TabIndex = 89
+        Me.btnKey4.Tag = "11"
         Me.btnKey4.Text = "＄　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "４ウ"
         Me.btnKey4.UseVisualStyleBackColor = False
         '
@@ -705,6 +746,7 @@ Partial Class VTermForm
         Me.btnKey3.Name = "btnKey3"
         Me.btnKey3.Size = New System.Drawing.Size(38, 38)
         Me.btnKey3.TabIndex = 88
+        Me.btnKey3.Tag = "01"
         Me.btnKey3.Text = "＃　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "３ア"
         Me.btnKey3.UseVisualStyleBackColor = False
         '
@@ -717,6 +759,7 @@ Partial Class VTermForm
         Me.btnKey2.Name = "btnKey2"
         Me.btnKey2.Size = New System.Drawing.Size(38, 38)
         Me.btnKey2.TabIndex = 87
+        Me.btnKey2.Tag = "10"
         Me.btnKey2.Text = """　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "２フ"
         Me.btnKey2.UseVisualStyleBackColor = False
         '
@@ -730,6 +773,7 @@ Partial Class VTermForm
         Me.btnKeyRShift.Name = "btnKeyRShift"
         Me.btnKeyRShift.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyRShift.TabIndex = 86
+        Me.btnKeyRShift.Tag = "85"
         Me.btnKeyRShift.Text = "SHIFT"
         Me.btnKeyRShift.UseVisualStyleBackColor = False
         '
@@ -743,6 +787,7 @@ Partial Class VTermForm
         Me.btnKeyCR.Name = "btnKeyCR"
         Me.btnKeyCR.Size = New System.Drawing.Size(78, 38)
         Me.btnKeyCR.TabIndex = 85
+        Me.btnKeyCR.Tag = "84"
         Me.btnKeyCR.Text = "C R"
         Me.btnKeyCR.UseVisualStyleBackColor = False
         '
@@ -756,6 +801,7 @@ Partial Class VTermForm
         Me.btnKeyBreak.Name = "btnKeyBreak"
         Me.btnKeyBreak.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyBreak.TabIndex = 84
+        Me.btnKeyBreak.Tag = "93"
         Me.btnKeyBreak.Text = "BREAK"
         Me.btnKeyBreak.UseVisualStyleBackColor = False
         '
@@ -769,6 +815,7 @@ Partial Class VTermForm
         Me.btnKeyCursorLR.Name = "btnKeyCursorLR"
         Me.btnKeyCursorLR.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyCursorLR.TabIndex = 83
+        Me.btnKeyCursorLR.Tag = "83"
         Me.btnKeyCursorLR.Text = "←" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "CURSOR" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "→"
         Me.btnKeyCursorLR.UseVisualStyleBackColor = False
         '
@@ -782,6 +829,7 @@ Partial Class VTermForm
         Me.btnKeyCursorUD.Name = "btnKeyCursorUD"
         Me.btnKeyCursorUD.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyCursorUD.TabIndex = 82
+        Me.btnKeyCursorUD.Tag = "92"
         Me.btnKeyCursorUD.Text = "↑" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "CURSOR" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "↓"
         Me.btnKeyCursorUD.UseVisualStyleBackColor = False
         '
@@ -795,6 +843,7 @@ Partial Class VTermForm
         Me.btnKeySpace.Name = "btnKeySpace"
         Me.btnKeySpace.Size = New System.Drawing.Size(78, 38)
         Me.btnKeySpace.TabIndex = 81
+        Me.btnKeySpace.Tag = "91"
         Me.btnKeySpace.Text = "SPACE"
         Me.btnKeySpace.UseVisualStyleBackColor = False
         '
@@ -807,6 +856,7 @@ Partial Class VTermForm
         Me.btnKeyInstDel.Name = "btnKeyInstDel"
         Me.btnKeyInstDel.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyInstDel.TabIndex = 80
+        Me.btnKeyInstDel.Tag = "81"
         Me.btnKeyInstDel.Text = "INST" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "DEL"
         Me.btnKeyInstDel.UseVisualStyleBackColor = False
         '
@@ -820,6 +870,7 @@ Partial Class VTermForm
         Me.btnKeyClrHome.Name = "btnKeyClrHome"
         Me.btnKeyClrHome.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyClrHome.TabIndex = 79
+        Me.btnKeyClrHome.Tag = "90"
         Me.btnKeyClrHome.Text = "CLR" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "HOME"
         Me.btnKeyClrHome.UseVisualStyleBackColor = False
         '
@@ -832,6 +883,7 @@ Partial Class VTermForm
         Me.Button77.Name = "Button77"
         Me.Button77.Size = New System.Drawing.Size(38, 38)
         Me.Button77.TabIndex = 78
+        Me.Button77.Tag = "87"
         Me.Button77.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□ー"
         Me.Button77.UseVisualStyleBackColor = False
         '
@@ -844,6 +896,7 @@ Partial Class VTermForm
         Me.Button76.Name = "Button76"
         Me.Button76.Size = New System.Drawing.Size(38, 38)
         Me.Button76.TabIndex = 77
+        Me.Button76.Tag = "96"
         Me.Button76.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□ォ"
         Me.Button76.UseVisualStyleBackColor = False
         '
@@ -856,6 +909,7 @@ Partial Class VTermForm
         Me.Button75.Name = "Button75"
         Me.Button75.Size = New System.Drawing.Size(38, 38)
         Me.Button75.TabIndex = 76
+        Me.Button75.Tag = "86"
         Me.Button75.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□。"
         Me.Button75.UseVisualStyleBackColor = False
         '
@@ -868,6 +922,7 @@ Partial Class VTermForm
         Me.Button74.Name = "Button74"
         Me.Button74.Size = New System.Drawing.Size(38, 38)
         Me.Button74.TabIndex = 75
+        Me.Button74.Tag = "95"
         Me.Button74.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□゛"
         Me.Button74.UseVisualStyleBackColor = False
         '
@@ -880,6 +935,7 @@ Partial Class VTermForm
         Me.Button63.Name = "Button63"
         Me.Button63.Size = New System.Drawing.Size(38, 38)
         Me.Button63.TabIndex = 74
+        Me.Button63.Tag = "67"
         Me.Button63.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□ッ"
         Me.Button63.UseVisualStyleBackColor = False
         '
@@ -892,6 +948,7 @@ Partial Class VTermForm
         Me.Button62.Name = "Button62"
         Me.Button62.Size = New System.Drawing.Size(38, 38)
         Me.Button62.TabIndex = 73
+        Me.Button62.Tag = "76"
         Me.Button62.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□ェ"
         Me.Button62.UseVisualStyleBackColor = False
         '
@@ -904,6 +961,7 @@ Partial Class VTermForm
         Me.Button61.Name = "Button61"
         Me.Button61.Size = New System.Drawing.Size(38, 38)
         Me.Button61.TabIndex = 72
+        Me.Button61.Tag = "66"
         Me.Button61.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□．"
         Me.Button61.UseVisualStyleBackColor = False
         '
@@ -916,6 +974,7 @@ Partial Class VTermForm
         Me.Button60.Name = "Button60"
         Me.Button60.Size = New System.Drawing.Size(38, 38)
         Me.Button60.TabIndex = 71
+        Me.Button60.Tag = "75"
         Me.Button60.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□゜"
         Me.Button60.UseVisualStyleBackColor = False
         '
@@ -928,6 +987,7 @@ Partial Class VTermForm
         Me.Button47.Name = "Button47"
         Me.Button47.Size = New System.Drawing.Size(38, 38)
         Me.Button47.TabIndex = 70
+        Me.Button47.Tag = "47"
         Me.Button47.Text = "□" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□ョ"
         Me.Button47.UseVisualStyleBackColor = False
         '
@@ -940,6 +1000,7 @@ Partial Class VTermForm
         Me.Button46.Name = "Button46"
         Me.Button46.Size = New System.Drawing.Size(38, 38)
         Me.Button46.TabIndex = 69
+        Me.Button46.Tag = "56"
         Me.Button46.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□ゥ"
         Me.Button46.UseVisualStyleBackColor = False
         '
@@ -952,6 +1013,7 @@ Partial Class VTermForm
         Me.Button45.Name = "Button45"
         Me.Button45.Size = New System.Drawing.Size(38, 38)
         Me.Button45.TabIndex = 68
+        Me.Button45.Tag = "46"
         Me.Button45.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□、"
         Me.Button45.UseVisualStyleBackColor = False
         '
@@ -964,6 +1026,7 @@ Partial Class VTermForm
         Me.Button44.Name = "Button44"
         Me.Button44.Size = New System.Drawing.Size(38, 38)
         Me.Button44.TabIndex = 67
+        Me.Button44.Tag = "55"
         Me.Button44.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□ヲ"
         Me.Button44.UseVisualStyleBackColor = False
         '
@@ -976,6 +1039,7 @@ Partial Class VTermForm
         Me.Button31.Name = "Button31"
         Me.Button31.Size = New System.Drawing.Size(38, 38)
         Me.Button31.TabIndex = 66
+        Me.Button31.Tag = "27"
         Me.Button31.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□ュ"
         Me.Button31.UseVisualStyleBackColor = False
         '
@@ -988,6 +1052,7 @@ Partial Class VTermForm
         Me.Button30.Name = "Button30"
         Me.Button30.Size = New System.Drawing.Size(38, 38)
         Me.Button30.TabIndex = 65
+        Me.Button30.Tag = "36"
         Me.Button30.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□ィ"
         Me.Button30.UseVisualStyleBackColor = False
         '
@@ -1000,6 +1065,7 @@ Partial Class VTermForm
         Me.Button29.Name = "Button29"
         Me.Button29.Size = New System.Drawing.Size(38, 38)
         Me.Button29.TabIndex = 64
+        Me.Button29.Tag = "26"
         Me.Button29.Text = "□　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□」"
         Me.Button29.UseVisualStyleBackColor = False
         '
@@ -1012,6 +1078,7 @@ Partial Class VTermForm
         Me.Button28.Name = "Button28"
         Me.Button28.Size = New System.Drawing.Size(38, 38)
         Me.Button28.TabIndex = 63
+        Me.Button28.Tag = "35"
         Me.Button28.Text = "￣　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "□ム"
         Me.Button28.UseVisualStyleBackColor = False
         '
@@ -1024,6 +1091,7 @@ Partial Class VTermForm
         Me.Button78.Name = "Button78"
         Me.Button78.Size = New System.Drawing.Size(38, 38)
         Me.Button78.TabIndex = 62
+        Me.Button78.Tag = "97"
         Me.Button78.Text = "年　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "円秒"
         Me.Button78.UseVisualStyleBackColor = False
         '
@@ -1037,6 +1105,7 @@ Partial Class VTermForm
         Me.btnKeyLShift.Name = "btnKeyLShift"
         Me.btnKeyLShift.Size = New System.Drawing.Size(38, 38)
         Me.btnKeyLShift.TabIndex = 49
+        Me.btnKeyLShift.Tag = "80"
         Me.btnKeyLShift.Text = "SHIFT"
         Me.btnKeyLShift.UseVisualStyleBackColor = False
         '
@@ -1049,6 +1118,7 @@ Partial Class VTermForm
         Me.Button64.Name = "Button64"
         Me.Button64.Size = New System.Drawing.Size(38, 38)
         Me.Button64.TabIndex = 48
+        Me.Button64.Tag = "77"
         Me.Button64.Text = "土　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "生分"
         Me.Button64.UseVisualStyleBackColor = False
         '
@@ -1061,6 +1131,7 @@ Partial Class VTermForm
         Me.Button48.Name = "Button48"
         Me.Button48.Size = New System.Drawing.Size(38, 38)
         Me.Button48.TabIndex = 32
+        Me.Button48.Tag = "57"
         Me.Button48.Text = "木　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "金時"
         Me.Button48.UseVisualStyleBackColor = False
         '
@@ -1073,6 +1144,7 @@ Partial Class VTermForm
         Me.Button32.Name = "Button32"
         Me.Button32.Size = New System.Drawing.Size(38, 38)
         Me.Button32.TabIndex = 16
+        Me.Button32.Tag = "37"
         Me.Button32.Text = "火　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "水￡"
         Me.Button32.UseVisualStyleBackColor = False
         '
@@ -1085,6 +1157,7 @@ Partial Class VTermForm
         Me.Button16.Name = "Button16"
         Me.Button16.Size = New System.Drawing.Size(38, 38)
         Me.Button16.TabIndex = 0
+        Me.Button16.Tag = "17"
         Me.Button16.Text = "日　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "月￥"
         Me.Button16.UseVisualStyleBackColor = False
         '
@@ -1097,6 +1170,7 @@ Partial Class VTermForm
         Me.Button15.Name = "Button15"
         Me.Button15.Size = New System.Drawing.Size(38, 38)
         Me.Button15.TabIndex = 0
+        Me.Button15.Tag = "07"
         Me.Button15.Text = "┬　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "┴ャ"
         Me.Button15.UseVisualStyleBackColor = False
         '
@@ -1109,6 +1183,7 @@ Partial Class VTermForm
         Me.Button14.Name = "Button14"
         Me.Button14.Size = New System.Drawing.Size(38, 38)
         Me.Button14.TabIndex = 0
+        Me.Button14.Tag = "16"
         Me.Button14.Text = "┤　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "├ァ"
         Me.Button14.UseVisualStyleBackColor = False
         '
@@ -1121,6 +1196,7 @@ Partial Class VTermForm
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(38, 38)
         Me.Button13.TabIndex = 0
+        Me.Button13.Tag = "06"
         Me.Button13.Text = "┐　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "┘「"
         Me.Button13.UseVisualStyleBackColor = False
         '
@@ -1133,6 +1209,7 @@ Partial Class VTermForm
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(38, 38)
         Me.Button12.TabIndex = 0
+        Me.Button12.Tag = "15"
         Me.Button12.Text = "┌　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "└ケ"
         Me.Button12.UseVisualStyleBackColor = False
         '
@@ -1147,6 +1224,7 @@ Partial Class VTermForm
         Me.btnKey1.Name = "btnKey1"
         Me.btnKey1.Size = New System.Drawing.Size(38, 38)
         Me.btnKey1.TabIndex = 0
+        Me.btnKey1.Tag = "00"
         Me.btnKey1.Text = "！　" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "１ヌ"
         Me.btnKey1.UseVisualStyleBackColor = False
         '

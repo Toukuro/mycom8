@@ -2,6 +2,9 @@
 Imports System.Net.Sockets
 Imports System.Text
 
+''' <summary>
+''' VDCP Server
+''' </summary>
 Public Class VdcpServer
     Inherits ServerClient.SimpleServer
 
@@ -61,6 +64,7 @@ Public Class VdcpServer
             .AppendLine()
         End With
 
+        _logger.Detail("Send control response. [{0:XX}:{1:XX}, {2}]", _DevClass, _DevId, iData)
         Dim sndData() As Byte = _Encoding.GetBytes(pktData.ToString)
         Return Send(sndData)
     End Function
@@ -81,6 +85,7 @@ Public Class VdcpServer
             .AppendLine()
         End With
 
+        _logger.Detail("Send device response. [{0:XX}:{1:XX}, {2:XXXX} {3:XX}]", _DevClass, _DevId, iAddr, iData)
         Dim sndData() As Byte = _Encoding.GetBytes(pktData.ToString)
         Return Send(sndData)
     End Function
@@ -116,6 +121,8 @@ Public Class VdcpServer
             Case "C"
                 Dim cmd As String = pktStr.Substring(6)
                 Dim e As New ControlReqEventArgs(DevClass, DevId, cmd)
+                _logger.Detail("Receive control request. [{0:XX}:{1:XX}, {2}]",
+                               _DevClass, _DevId, cmd)
                 RaiseEvent ControlRequest(Me, e)
 
             Case "D"
@@ -124,16 +131,14 @@ Public Class VdcpServer
 
                 UShort.TryParse(pktStr.Substring(6, 4), addr)
 
-                Select Case accsDiv
-                    Case "R"
-                        Dim e As New DeviceReqEventArgs(DevClass, DevId, addr, data)
+                If accsDiv = "W" Then
+                    Byte.TryParse(pktStr.Substring(10, 2), data)
+                End If
 
-                    Case "W"
-                        Byte.TryParse(pktStr.Substring(10, 2), data)
-
-                        Dim e As New DeviceReqEventArgs(DevClass, DevId, addr, data)
-                        RaiseEvent DeviceWriteRequest(Me, e)
-                End Select
+                Dim e As New DeviceReqEventArgs(DevClass, DevId, addr, data)
+                _logger.Detail("Send device response. [{0:XX}:{1:XX}, {2:XXXX} {3:XX}]",
+                                       _DevClass, _DevId, addr, data)
+                RaiseEvent DeviceWriteRequest(Me, e)
         End Select
 
         Return dataLen

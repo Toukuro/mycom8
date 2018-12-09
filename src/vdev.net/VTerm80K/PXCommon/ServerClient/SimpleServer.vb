@@ -27,7 +27,7 @@ Namespace ServerClient
         Private _client As TcpClient = Nothing
         Private _readBuffer() As Byte                   '非同期受信用のバイトバッファー
 
-        Private _logger As New Logger.FormatLogger()
+        Protected _logger As New Logger.FormatLogger()
 
 #End Region
 
@@ -74,22 +74,31 @@ Namespace ServerClient
         Public ReadOnly Property IpAddres As String
             Get
                 If _ipAddr Is Nothing Then
-                    Return "No Address"
+                    Return Nothing
                 End If
 
-                Dim ipBytes() As Byte = _ipAddr.GetAddressBytes
-                Dim ipStr As String = ""
-                For Each octet As Byte In ipBytes
-                    If String.IsNullOrEmpty(ipStr) Then
-                        ipStr = String.Concat(ipStr, octet.ToString())
-                    Else
-                        ipStr = String.Concat(ipStr, ".", octet.ToString)
-                    End If
-                Next
-                Return ipStr
+                Return _ipAddr.ToString
             End Get
         End Property
 
+        Public ReadOnly Property ClientIpAddress As String
+            Get
+                Return _client.Client.RemoteEndPoint.ToString
+            End Get
+        End Property
+
+        Private Function IpToString(iIpAddr As IPAddress) As String
+            Dim ipBytes() As Byte = _ipAddr.GetAddressBytes
+            Dim ipStr As String = ""
+            For Each octet As Byte In ipBytes
+                If String.IsNullOrEmpty(ipStr) Then
+                    ipStr = String.Concat(ipStr, octet.ToString())
+                Else
+                    ipStr = String.Concat(ipStr, ".", octet.ToString)
+                End If
+            Next
+            Return ipStr
+        End Function
         Public Property LogAccessor As Logger.LogAccessor
             Get
                 Return _logger.Accessor
@@ -128,6 +137,7 @@ Namespace ServerClient
             Catch ex As Exception
                 Throw New CommException("Can not start listening.", ex)
             End Try
+            _logger.Detail("Listen started.")
 
             '待ち受け
             While _client Is Nothing
