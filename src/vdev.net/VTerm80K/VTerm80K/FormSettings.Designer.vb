@@ -14,7 +14,7 @@ Option Explicit On
 
 
 <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
- Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")>  _
+ Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")>  _
 Partial Friend NotInheritable Class FormSettings
     Inherits Global.System.Configuration.ApplicationSettingsBase
     
@@ -77,6 +77,24 @@ Partial Friend NotInheritable Class FormSettings
     Public ReadOnly Property GraphicKeyForeColor() As Global.System.Drawing.Color
         Get
             Return CType(Me("GraphicKeyForeColor"),Global.System.Drawing.Color)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("Gray")>  _
+    Public ReadOnly Property NormalKeyPressColor() As Global.System.Drawing.Color
+        Get
+            Return CType(Me("NormalKeyPressColor"),Global.System.Drawing.Color)
+        End Get
+    End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("192, 64, 0")>  _
+    Public ReadOnly Property ControlKeyPressColor() As Global.System.Drawing.Color
+        Get
+            Return CType(Me("ControlKeyPressColor"),Global.System.Drawing.Color)
         End Get
     End Property
 End Class

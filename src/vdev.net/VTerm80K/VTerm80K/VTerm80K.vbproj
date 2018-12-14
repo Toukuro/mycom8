@@ -127,14 +127,19 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\PXCommon\PXCommon.vbproj">
+      <Project>{80e354d9-0ae6-4c5b-b78c-bcb8b8c24511}</Project>
+      <Name>PXCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VDCP\VDCP.vbproj">
       <Project>{1af9bd39-329c-4dc4-8852-e3d2565b2fa5}</Project>
       <Name>VDCP</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Images\MZ80Font.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

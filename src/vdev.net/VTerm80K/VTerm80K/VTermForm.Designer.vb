@@ -108,8 +108,9 @@ Partial Class VTermForm
         '
         'pnlDisplay
         '
+        Me.pnlDisplay.AccessibleRole = System.Windows.Forms.AccessibleRole.Graphic
         Me.pnlDisplay.BackColor = System.Drawing.Color.Black
-        Me.pnlDisplay.Location = New System.Drawing.Point(1, 1)
+        Me.pnlDisplay.Location = New System.Drawing.Point(0, 0)
         Me.pnlDisplay.Margin = New System.Windows.Forms.Padding(0)
         Me.pnlDisplay.Name = "pnlDisplay"
         Me.pnlDisplay.Size = New System.Drawing.Size(640, 400)

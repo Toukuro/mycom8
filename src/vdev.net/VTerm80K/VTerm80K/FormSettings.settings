@@ -20,5 +20,11 @@
     <Setting Name="GraphicKeyForeColor" Type="System.Drawing.Color" Scope="Application">
       <Value Profile="(Default)">White</Value>
     </Setting>
+    <Setting Name="NormalKeyPressColor" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">Gray</Value>
+    </Setting>
+    <Setting Name="ControlKeyPressColor" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">192, 64, 0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

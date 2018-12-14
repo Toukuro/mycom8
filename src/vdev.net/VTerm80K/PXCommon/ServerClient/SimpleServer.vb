@@ -99,6 +99,7 @@ Namespace ServerClient
             Next
             Return ipStr
         End Function
+
         Public Property LogAccessor As Logger.LogAccessor
             Get
                 Return _logger.Accessor
