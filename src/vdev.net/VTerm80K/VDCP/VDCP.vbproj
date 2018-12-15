@@ -65,7 +65,7 @@
   <ItemGroup>
     <Compile Include="ControlReqEventArgs.vb" />
     <Compile Include="DeviceReqEventArgs.vb" />
-    <Compile Include="vdcpServer.vb" />
+    <Compile Include="VdcpServer.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

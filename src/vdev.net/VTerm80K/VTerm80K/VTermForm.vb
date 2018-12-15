@@ -5,12 +5,26 @@ Imports System.IO
 
 Public Class VTermForm
 
+#Region "定数定義"
+
     Private Const SCREEN_WIDTH As Integer = 40
     Private Const SCREEN_HEIGHT As Integer = 25
+    Private Const FONT_WIDTH As Integer = 16
+    Private Const FONT_HEIGHT As Integer = 16
 
     Private Const KBDIO_SIZE As Integer = 10
 
+#End Region
+
+#Region "メンバー変数"
+
+#Region "VDCPサーバ関連"
+
     Private WithEvents _vdcpServer As VdcpServer
+
+#End Region
+
+#Region "キーボード制御関連"
 
     Private _KeyMap As New Hashtable        'KeyCode→Buttonの変換用
     Private _KeyMapShift As New Hashtable
@@ -18,26 +32,81 @@ Public Class VTermForm
     Private _KanaKey As Button = Nothing
 
     ''' <summary>キーの押下状態を示すデータ</summary>
-    Private _KeyIOData(KBDIO_SIZE) As Byte
+    Private _KeyIOMem(KBDIO_SIZE) As Byte
 
-    Private _VramData(SCREEN_WIDTH * SCREEN_HEIGHT) As Byte
+#End Region
+
+#Region "ディスプレイ制御関連"
+
+    Private _VramMem(SCREEN_WIDTH * SCREEN_HEIGHT) As Byte
     Private _ScreenImage As Bitmap
-    Private _FontBitmap As Bitmap = My.Resources.MZ80Font
+    Private _FontBitmap As Bitmap
     Private _testVramAddr As UShort = 0
     Private _testCode As Byte = 0
 
+#End Region
+
     Private _logger As Logger.FormatLogger
     Private _lockObj As New Object
+
+#End Region
+
+#Region "フォームイベント"
 
     Private Sub VTermForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _logger = New Logger.FormatLogger(New Logger.FileLogAccessor(Me.GetType.Name))
         InitKeyMap()
         SetKeyButtonEvent()
+    End Sub
 
+    Private Sub VTermForm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+
+        _FontBitmap = New Bitmap(My.Resources.MZ80Font, 256, 256)
         Dim gfx As Graphics = pnlDisplay.CreateGraphics
         _ScreenImage = New Bitmap(640, 400, gfx)
         pnlDisplay.DrawToBitmap(_ScreenImage, New Rectangle(0, 0, 640, 400))
+
+        _vdcpServer = New VdcpServer()
+        _vdcpServer.StartListen()
+        _vdcpServer.AsyncRead()
     End Sub
+
+    Private Sub VTermForm_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
+        If _KeyMap.Contains(e.KeyCode) Then
+            Dim btnKey As Button = _KeyMap(e.KeyCode)
+            btnKey.Select()
+            btnKey.PerformClick()
+        End If
+    End Sub
+
+    Private Sub btnKey_Click(sender As Object, e As EventArgs)
+        Dim btn As Button = sender
+        Dim tagValue As Byte = Val("&h" & btn.Tag)
+
+        Dim devAddr As UShort = tagValue / &H10
+        Dim bitNo As Byte = tagValue And &HF
+
+        SetKeyBit(devAddr, bitNo)
+        Dim cbackup As Color = btn.BackColor
+        If (devAddr = 8 And bitNo <= 5) Or (devAddr = 9 And bitNo <= 4) Then
+            btn.BackColor = FormSettings.Default.ControlKeyPressColor
+        Else
+            btn.BackColor = FormSettings.Default.NormalKeyPressColor
+        End If
+
+        Thread.Sleep(My.Settings.KeyPressTime)
+
+        ResetKeyBit(devAddr, bitNo)
+        btn.BackColor = cbackup
+    End Sub
+
+    Private Sub pnlDisplay_Paint(sender As Object, e As PaintEventArgs) Handles pnlDisplay.Paint
+        e.Graphics.DrawImage(_ScreenImage, 0, 0)
+    End Sub
+
+#End Region
+
+#Region "初期化"
 
     Private Sub InitKeyMap()
         _KeyMap(Keys.D1) = btnKey1
@@ -95,96 +164,69 @@ Public Class VTermForm
         _logger.Information("KeyButton Event Added.")
     End Sub
 
+#End Region
+
 #Region "キーボードの処理"
 
-    Private Sub VTermForm_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
-        If _KeyMap.Contains(e.KeyCode) Then
-            Dim btnKey As Button = _KeyMap(e.KeyCode)
-            btnKey.Select()
-            btnKey.PerformClick()
-        End If
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="iAddr"></param>
+    ''' <param name="iBitNo"></param>
+    Private Sub SetKeyBit(iAddr As UShort, iBitNo As Byte)
+        _KeyIOMem(iAddr) = _KeyIOMem(iAddr) Or 2 ^ iBitNo
     End Sub
 
-    Private Sub btnKey_Click(sender As Object, e As EventArgs)
-        Dim btn As Button = sender
-        Dim tagValue As Byte = Val("&h" & btn.Tag)
-
-        Dim devAddr As UShort = tagValue / &H10
-        Dim bitNo As Byte = tagValue And &HF
-
-        KeySet(devAddr, bitNo)
-        Dim cbackup As Color = btn.BackColor
-        If (devAddr = 8 And bitNo <= 5) Or (devAddr = 9 And bitNo <= 4) Then
-            btn.BackColor = FormSettings.Default.ControlKeyPressColor
-        Else
-            btn.BackColor = FormSettings.Default.NormalKeyPressColor
-        End If
-
-        Thread.Sleep(My.Settings.KeyPressTime)
-
-        KeyReset(devAddr, bitNo)
-        WriteVram(_testVramAddr, _testCode)
-        _testVramAddr += 1
-        _testCode += 1
-
-        btn.BackColor = cbackup
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="iAddr"></param>
+    ''' <param name="iBitNo"></param>
+    Private Sub ResetKeyBit(iAddr As UShort, iBitNo As Byte)
+        _KeyIOMem(iAddr) = _KeyIOMem(iAddr) And Not (2 ^ iBitNo)
     End Sub
 
-#Region "Keyboard I/O データへのアクセス"
-
-    Private Sub KeySet(iAddr As UShort, iBitNo As Byte)
-        _KeyIOData(iAddr) = _KeyIOData(iAddr) Or 2 ^ iBitNo
-    End Sub
-
-    Private Sub KeyReset(iAddr As UShort, iBitNo As Byte)
-        _KeyIOData(iAddr) = _KeyIOData(iAddr) And Not (2 ^ iBitNo)
-    End Sub
-
-    Private Function KeyRead(iaddr As UShort) As Byte
-        Return _KeyIOData(iaddr)
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="iaddr"></param>
+    ''' <returns></returns>
+    Private Function ReadKeyBit(iaddr As UShort) As Byte
+        Return _KeyIOMem(iaddr)
     End Function
-
-#End Region
 
 #End Region
 
 #Region "ディスプレイの処理"
 
-    'Private Sub LoadFontBitmap(iFileName As String)
-    '    Using fs As New FileStream(iFileName, FileMode.Open)
-    '        _FontBitmap = Bitmap.FromStream(fs)
-    '    End Using
-    'End Sub
-
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="iAddr"></param>
+    ''' <param name="iCode"></param>
     Private Sub WriteVram(iAddr As UShort, iCode As Byte)
-        Dim scrX As Integer = (iAddr Mod SCREEN_WIDTH) * 16
-        Dim scrY As Integer = Math.Floor(iAddr / SCREEN_WIDTH) * 16
-        Dim fntX As Integer = Math.Floor(iCode / 16) * 16
-        Dim fntY As Integer = (iCode Mod 16) * 16
+        Dim scrX As Integer = (iAddr Mod SCREEN_WIDTH) * (FONT_WIDTH)
+        Dim scrY As Integer = Math.Floor(iAddr / SCREEN_WIDTH) * (FONT_HEIGHT)
+        Dim fntX As Integer = Math.Floor(iCode / FONT_WIDTH) * FONT_WIDTH
+        Dim fntY As Integer = (iCode Mod FONT_HEIGHT) * FONT_HEIGHT
 
-        'If (iCode Mod 16) > 0 Then
-        '    fntY -= 1
-        'End If
-        'If (iAddr Mod SCREEN_WIDTH) > 0 Then
-        '    scrY -= 1
-        'End If
-
-        Dim fntRct As New Rectangle(fntX, fntY, 16, 16)
+        Dim fntRct As New Rectangle(fntX, fntY, FONT_WIDTH, FONT_HEIGHT)
         Dim gfx As Graphics = Graphics.FromImage(_ScreenImage)
 
         gfx.DrawImage(_FontBitmap, scrX, scrY, fntRct, GraphicsUnit.Pixel)
         pnlDisplay.Refresh()
 
-        _VramData(iAddr) = iCode
+        _VramMem(iAddr) = iCode
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="iAddr"></param>
+    ''' <returns></returns>
     Private Function ReadVram(iAddr As UShort) As Byte
-        Return _VramData(iAddr)
+        Return _VramMem(iAddr)
     End Function
-
-    Private Sub pnlDisplay_Paint(sender As Object, e As PaintEventArgs) Handles pnlDisplay.Paint
-        e.Graphics.DrawImage(_ScreenImage, 0, 0)
-    End Sub
 
 #End Region
 
@@ -199,19 +241,30 @@ Public Class VTermForm
         Select Case e.DevClass
             Case &H0
                 'キースキャン
-                _vdcpServer.SendDevResponse(e.Addr, _KeyIOData(e.Addr))
+                _vdcpServer.SendDevResponse(e.Addr, ReadKeyBit(e.Addr))
             Case &H1
                 'VRAM読み出し
+                _vdcpServer.SendDevResponse(e.Addr, ReadVram(e.Addr))
         End Select
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub _vdcpServer_DeviceWriteRequest(sender As Object, e As DeviceReqEventArgs) Handles _vdcpServer.DeviceWriteRequest
         If e.DevClass = &H1 Then
             'VRAM書き込み
+            WriteVram(e.Addr, e.Data)
         End If
     End Sub
 
-
+    Private Sub _vdcpServer_ControlRequest(sender As Object, e As ControlReqEventArgs) Handles _vdcpServer.ControlRequest
+        If e.CommandString = "END" Then
+            Me.Close()
+        End If
+    End Sub
 
 #End Region
 End Class

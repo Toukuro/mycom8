@@ -34,7 +34,7 @@ Public Class VdcpServer
     ''' <summary>
     ''' コンストラクタ
     ''' </summary>
-    Public Sub New(Optional iServer As String = Nothing, Optional iPortNo As Integer = 0)
+    Public Sub New(Optional iServer As String = Nothing, Optional iPortNo As Integer = DefaultPortNo)
         MyBase.New(iServer, iPortNo)
     End Sub
 

@@ -124,6 +124,7 @@ Namespace ServerClient
                 For Each ip As IPAddress In ipSet
                     If ip.AddressFamily = AddressFamily.InterNetwork Then
                         _ipAddr = ip
+                        Exit For
                     End If
                 Next
 
@@ -141,6 +142,8 @@ Namespace ServerClient
             _logger.Detail("Listen started.")
 
             '待ち受け
+            _listener.Start()
+
             While _client Is Nothing
                 If _listener.Pending Then
                     _client = _listener.AcceptTcpClient
