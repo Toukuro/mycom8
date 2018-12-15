@@ -25,6 +25,8 @@ Namespace ServerClient
         Private _ipAddr As IPAddress = Nothing
         Private _listener As TcpListener = Nothing
         Private _client As TcpClient = Nothing
+        Private _isListened As Boolean = False
+
         Private _readBuffer() As Byte                   '非同期受信用のバイトバッファー
 
         Protected _logger As New Logger.FormatLogger()
@@ -87,18 +89,11 @@ Namespace ServerClient
             End Get
         End Property
 
-        Private Function IpToString(iIpAddr As IPAddress) As String
-            Dim ipBytes() As Byte = _ipAddr.GetAddressBytes
-            Dim ipStr As String = ""
-            For Each octet As Byte In ipBytes
-                If String.IsNullOrEmpty(ipStr) Then
-                    ipStr = String.Concat(ipStr, octet.ToString())
-                Else
-                    ipStr = String.Concat(ipStr, ".", octet.ToString)
-                End If
-            Next
-            Return ipStr
-        End Function
+        Public ReadOnly Property IsListened As Boolean
+            Get
+                Return _isListened
+            End Get
+        End Property
 
         Public Property LogAccessor As Logger.LogAccessor
             Get
@@ -143,6 +138,7 @@ Namespace ServerClient
 
             '待ち受け
             _listener.Start()
+            _isListened = True
 
             While _client Is Nothing
                 If _listener.Pending Then
@@ -152,6 +148,7 @@ Namespace ServerClient
                     Threading.Thread.Sleep(1000)
                 End If
             End While
+            _isListened = False
         End Sub
 
 #End Region

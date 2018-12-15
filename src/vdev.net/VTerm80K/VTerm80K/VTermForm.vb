@@ -52,13 +52,22 @@ Public Class VTermForm
 #End Region
 
 #Region "フォームイベント"
-
+    ''' <summary>
+    ''' Loadイベント
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub VTermForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _logger = New Logger.FormatLogger(New Logger.FileLogAccessor(Me.GetType.Name))
         InitKeyMap()
         SetKeyButtonEvent()
     End Sub
 
+    ''' <summary>
+    ''' Shownイベント
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub VTermForm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
 
         _FontBitmap = New Bitmap(My.Resources.MZ80Font, 256, 256)
@@ -67,8 +76,9 @@ Public Class VTermForm
         pnlDisplay.DrawToBitmap(_ScreenImage, New Rectangle(0, 0, 640, 400))
 
         _vdcpServer = New VdcpServer()
-        _vdcpServer.StartListen()
-        _vdcpServer.AsyncRead()
+        _vdcpServer.LogAccessor = _logger.Accessor
+        Timer1.Interval = 1000
+        Timer1.Start()
     End Sub
 
     Private Sub VTermForm_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
@@ -200,10 +210,10 @@ Public Class VTermForm
 #Region "ディスプレイの処理"
 
     ''' <summary>
-    ''' 
+    ''' VRAMへの書き込み
     ''' </summary>
-    ''' <param name="iAddr"></param>
-    ''' <param name="iCode"></param>
+    ''' <param name="iAddr">VRAM相対アドレス</param>
+    ''' <param name="iCode">ディスプレイコード</param>
     Private Sub WriteVram(iAddr As UShort, iCode As Byte)
         Dim scrX As Integer = (iAddr Mod SCREEN_WIDTH) * (FONT_WIDTH)
         Dim scrY As Integer = Math.Floor(iAddr / SCREEN_WIDTH) * (FONT_HEIGHT)
@@ -266,5 +276,15 @@ Public Class VTermForm
         End If
     End Sub
 
+    Private Sub StartLesten()
+        _vdcpServer.StartListen()
+        _vdcpServer.AsyncRead()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        If Not _vdcpServer.IsListened Then
+            StartLesten()
+        End If
+    End Sub
 #End Region
 End Class

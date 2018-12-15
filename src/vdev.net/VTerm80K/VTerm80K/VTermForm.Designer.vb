@@ -22,6 +22,7 @@ Partial Class VTermForm
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.pnlDisplay = New System.Windows.Forms.Panel()
         Me.pnlKeyBoard = New System.Windows.Forms.Panel()
         Me.btnKeyKana = New System.Windows.Forms.Button()
@@ -103,6 +104,7 @@ Partial Class VTermForm
         Me.Button12 = New System.Windows.Forms.Button()
         Me.btnKey1 = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.pnlKeyBoard.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -1335,4 +1337,5 @@ Partial Class VTermForm
     Friend WithEvents Button28 As Button
     Friend WithEvents Button78 As Button
     Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents Timer1 As Timer
 End Class
