@@ -76,8 +76,9 @@ Public Class VTermForm
         pnlDisplay.DrawToBitmap(_ScreenImage, New Rectangle(0, 0, 640, 400))
 
         _vdcpServer = New VdcpServer()
+        _vdcpServer.DoEvent = AddressOf Application.DoEvents
         _vdcpServer.LogAccessor = _logger.Accessor
-        Timer1.Interval = 1000
+        Timer1.Interval = 3000
         Timer1.Start()
     End Sub
 
@@ -278,13 +279,22 @@ Public Class VTermForm
 
     Private Sub StartLesten()
         _vdcpServer.StartListen()
-        _vdcpServer.AsyncRead()
+        If _vdcpServer.IsEstablished Then
+            _vdcpServer.AsyncRead()
+        End If
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        If Not _vdcpServer.IsListened Then
+        If Not _vdcpServer.IsListening Then
             StartLesten()
         End If
+        Application.DoEvents()
+    End Sub
+
+    Private Sub VTermForm_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        Timer1.Stop()
+        Thread.Sleep(1000)
+        _vdcpServer.StopListen()
     End Sub
 #End Region
 End Class

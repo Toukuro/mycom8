@@ -25,9 +25,10 @@ Namespace ServerClient
         Private _ipAddr As IPAddress = Nothing
         Private _listener As TcpListener = Nothing
         Private _client As TcpClient = Nothing
-        Private _isListened As Boolean = False
+        Private _isListening As Boolean = False
 
         Private _readBuffer() As Byte                   '非同期受信用のバイトバッファー
+        Private _DoEvent As Action = Nothing
 
         Protected _logger As New Logger.FormatLogger()
 
@@ -89,10 +90,22 @@ Namespace ServerClient
             End Get
         End Property
 
-        Public ReadOnly Property IsListened As Boolean
+        Public ReadOnly Property IsListening As Boolean
             Get
-                Return _isListened
+                Return _isListening
             End Get
+        End Property
+
+        Public ReadOnly Property IsEstablished As Boolean
+            Get
+                Return (_client IsNot Nothing)
+            End Get
+        End Property
+
+        Public WriteOnly Property DoEvent As Action
+            Set(value As Action)
+                _DoEvent = value
+            End Set
         End Property
 
         Public Property LogAccessor As Logger.LogAccessor
@@ -138,17 +151,30 @@ Namespace ServerClient
 
             '待ち受け
             _listener.Start()
-            _isListened = True
+            _isListening = True
 
-            While _client Is Nothing
+            While _isListening AndAlso _client Is Nothing
                 If _listener.Pending Then
                     _client = _listener.AcceptTcpClient
                     _logger.Detail("Client connected. (client=[{0}])", Me.IpAddres)
                 Else
+                    If _DoEvent IsNot Nothing Then
+                        _DoEvent()
+                    End If
                     Threading.Thread.Sleep(1000)
                 End If
             End While
-            _isListened = False
+            _isListening = False
+        End Sub
+
+        Public Sub StopListen()
+            _isListening = False
+            If _listener IsNot Nothing Then
+                If _isListening Then
+                    _listener.Stop()
+                End If
+                _listener = Nothing
+            End If
         End Sub
 
 #End Region
@@ -226,10 +252,11 @@ Namespace ServerClient
         Private Sub _AsyncReadCallback(asyncResult As IAsyncResult)
             Dim stream As NetworkStream = asyncResult.AsyncState
 
-            If AsyncReadCallback(asyncResult) > 0 Then
+            If _client IsNot Nothing AndAlso AsyncReadCallback(asyncResult) > 0 Then
                 AsyncRead()
             Else
                 stream.Close()
+                _client = Nothing
                 _logger.Detail("stream closed.")
             End If
         End Sub
